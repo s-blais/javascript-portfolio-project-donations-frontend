@@ -1,6 +1,10 @@
 
 document.addEventListener('DOMContentLoaded', function() {
+  // fetch and render existing Transactions from db
   fetchTransactions()
+  // set create Transaction form and set listener and handler
+  const createTransactionForm = document.getElementById('create-transaction-form')
+  createTransactionForm.addEventListener('submit', (e) => createTransactionHandler(e))
 })
 
 function fetchTransactions() {
@@ -34,4 +38,16 @@ function renderTransactionCard(transaction) {
     </p>
   `
   document.getElementById('transaction-cards').innerHTML += card
+}
+
+function createTransactionHandler(e) {
+  e.preventDefault()
+  // grab the values from the form
+  const date = document.querySelector('#create-transaction-date').value
+  const recipient = document.querySelector('#create-transaction-recipient').value
+  const contact = document.querySelector('#create-transaction-contact').value
+  const amount = document.querySelector('#create-transaction-amount').value
+  const fund = document.querySelector('#create-transaction-fund').value
+  const notes = document.querySelector('#create-transaction-notes').value
+  debugger
 }

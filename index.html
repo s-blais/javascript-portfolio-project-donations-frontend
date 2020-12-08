@@ -10,48 +10,27 @@
   </head>
 
   <body>
-    <div id="add-transaction-form-container">
+    <div id="create-transaction-form-container">
       <h3>Create New Transaction</h3>
-      <form id="add-transaction-form">
-        <input
-          type="text"
-          name="date"
-          value=""
-          placeholder="YYYY-MM-DD"
-        />
+      <form id="create-transaction-form">
+        <input type="text" name="date" id="create-transaction-date" placeholder="YYYY-MM-DD"/>
         <br />
-        <input
-          type="text"
-          name="recipient"
-          value=""
-          placeholder="Recipient"
-        /><br />
-        <input
-          type="text"
-          name="contact"
-          value=""
-          placeholder="Contact"
-        /><br />
-        <input
-          type="text"
-          name="amount"
-          value=""
-          placeholder="Amount (in dollars)"
-        /><br />
-        <select name="fund">
+        <input type="text" name="recipient" id="create-transaction-recipient" placeholder="Recipient"/>
+        <br />
+        <input type="text" name="contact" id="create-transaction-contact" placeholder="Contact"/>
+        <br />
+        <input type="text" name="amount" id="create-transaction-amount" placeholder="Amount (in dollars)"/>
+        <br />
+        <select name="fund" id="create-transaction-fund">
           <option value="1">JM Trust</option>
           <option value="2">EM Trust</option>
           <option value="3">TM Roth IRA</option>
           <option value="4">TM IM</option>
       </select>
       <br />
-        <textarea name="notes" rows="4" cols="20" placeholder="Notes"></textarea>
+        <textarea name="notes" rows="4" cols="20" placeholder="Notes" id="create-transaction-notes"></textarea>
         <br />
-        <input
-          type="submit"
-          name="submit"
-          value="Create New Transaction"
-        />
+        <input type="submit" name="submit" value="Create New Transaction"/>
       </form>
     </div>
 
