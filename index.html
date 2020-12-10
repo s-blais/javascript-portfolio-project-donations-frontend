@@ -7,20 +7,25 @@
     <title>title</title>
     <meta name="description" content="">
     <meta name="keywords" content="">
+    <!-- <link rel="stylesheet" type="text/css" href="styles.css"> -->
+    <link rel="stylesheet" href="water.css">
+    <link rel="stylesheet" type="text/css" href="water-supplement.css">
   </head>
 
   <body>
+    <h2>MFT Trust Transaction Tracker</h2>
     <div id="create-transaction-form-container">
-      <h3>Create New Transaction</h3>
+      <details>
+      <summary><h3>Create New Transaction</h3></summary>
       <form id="create-transaction-form">
         <input type="text" name="date" id="create-transaction-date" placeholder="YYYY-MM-DD"/>
-        <br />
+        <!-- <br /> -->
         <input type="text" name="recipient" id="create-transaction-recipient" placeholder="Recipient"/>
-        <br />
+        <!-- <br /> -->
         <input type="text" name="contact" id="create-transaction-contact" placeholder="Contact"/>
-        <br />
+        <!-- <br /> -->
         <input type="text" name="amount" id="create-transaction-amount" placeholder="Amount (in dollars)"/>
-        <br />
+        <!-- <br /> -->
         <select name="fund" id="create-transaction-fund">
           <option value="1">JM Trust</option>
           <option value="2">EM Trust</option>
@@ -32,8 +37,9 @@
         <br />
         <input type="submit" name="submit" value="Create New Transaction"/>
       </form>
+      </details>
     </div>
-
+    <h3>Transactions</h3>
     <div id="transaction-cards">
 
     </div>

@@ -19,23 +19,16 @@ function fetchTransactions() {
 // this is HIDEOUS but will refactor later
 function renderTransactionCard(transaction) {
   const card = `
-    <p>
-      <table>
-        <tr>
-          <td>Date</td><td>${transaction.attributes.date}</td>
-        </tr><tr>
-          <td>Recipient</td><td>${transaction.attributes.recipient}</td>
-        </tr><tr>
-          <td>Contact</td><td>${transaction.attributes.contact}</td>
-        </tr><tr>
-          <td>Amount</td><td>${transaction.attributes.amount}.00</td>
-        </tr><tr>
-          <td>Fund</td><td>${transaction.attributes.fund.name}</td>
-        </tr><tr>
-          <td>Notes</td><td>${transaction.attributes.notes}</td>
-        </tr>
-      </table>
-    </p>
+    
+    <details>
+      <summary>
+        ${transaction.attributes.date} – ${transaction.attributes.recipient} – $${transaction.attributes.amount}
+      </summary>
+      Fund: ${transaction.attributes.fund.name}<br>
+      Contact: ${transaction.attributes.contact}<br>
+      Notes: ${transaction.attributes.notes}
+    </details>
+    
   `
   document.getElementById('transaction-cards').innerHTML += card
 }
