@@ -16,26 +16,17 @@ function fetchTransactions() {
   )
 }
 
-// this is HIDEOUS but will refactor later
+// Want to refactor to be not so literal, replace innerHTML with prepend/append
 function renderTransactionCard(transaction) {
   const card = `
-    <p>
-      <table>
-        <tr>
-          <td>Date</td><td>${transaction.attributes.date}</td>
-        </tr><tr>
-          <td>Recipient</td><td>${transaction.attributes.recipient}</td>
-        </tr><tr>
-          <td>Contact</td><td>${transaction.attributes.contact}</td>
-        </tr><tr>
-          <td>Amount</td><td>${transaction.attributes.amount}.00</td>
-        </tr><tr>
-          <td>Fund</td><td>${transaction.attributes.fund.name}</td>
-        </tr><tr>
-          <td>Notes</td><td>${transaction.attributes.notes}</td>
-        </tr>
-      </table>
-    </p>
+    <details>
+      <summary><b>
+        ${transaction.attributes.date} – ${transaction.attributes.recipient} – $${transaction.attributes.amount}
+      </b></summary>
+      <strong>Fund:</strong> ${transaction.attributes.fund.name}<br>
+      <strong>Contact:</strong> ${transaction.attributes.contact}<br>
+      <strong>Notes:</strong> ${transaction.attributes.notes}
+    </details>
   `
   document.getElementById('transaction-cards').innerHTML += card
 }

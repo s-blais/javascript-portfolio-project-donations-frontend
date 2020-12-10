@@ -1,0 +1,101 @@
+html, body {
+  height: 100%;
+}
+body {
+    font-family: Helvetica, sans-serif;
+    color: #484848;
+    line-height: 1.3em;
+    display: flex;
+    flex-direction: column;
+  }
+.content {
+  flex: 1 0 auto;
+}
+header {
+  border-bottom: 2px solid #0084ffaf;
+}
+nav {
+  font-size: smaller;
+}
+h1 {
+    color: #0084ff;
+    margin-bottom: 1.5em;
+    margin-top: 0.25em;
+  }
+h1.masthead {
+  margin-bottom: 0;
+}
+h4 {
+    margin-bottom: 0;
+  }
+h5.masthead {
+  color: #0084ff;
+  margin-top: 0.5em;
+  margin-bottom: 0px;
+  padding-bottom: 5px;
+  border-bottom: 2px solid #0084ffaf;
+}
+.button {
+    border: 1px solid;
+    border-radius: 5px;
+    padding: 0.2em 0.35em;
+    margin: 5px 5px 5px 0;
+    display: inline-block;
+  }
+input, select {
+    font-size: 100%;
+    color: #484848;
+  }
+a:link, a:visited {
+    color: #484848;
+    text-decoration: none;
+  }
+a:hover, a:active, a:focus {
+    color: #0084ff;
+    /* text-decoration: underline; */
+  }
+input.button:hover, input.button:active, input.button:focus {
+    text-decoration: underline;
+  }
+h1 a:link, h1 a:visited, h1 a:hover, h1 a:active, h1 a:focus {
+    color: #0084ff;
+  }
+a.edit_link {
+    font-size: 0.75em;
+    font-weight: normal;
+    font-style: italic;
+  }
+form {
+  line-height: 2em;
+}
+hr {
+    padding: 5px, 0, 5px, 0;
+    color: #0084ff;
+  }
+th {
+  text-align: left;
+}
+td {
+  padding-right: 2em;
+}
+footer {
+  flex-shrink: 0;
+}
+footer, footer a, footer.button {
+  color: #0084ff !important; /* yeah I know I'm rusty */
+  font-size: small;
+}
+#error_explanation {
+  color: #B01011;
+}
+.field_with_errors {
+  display: inline;
+  color: #B01011;
+}
+.flash {
+  color: #B01011;
+  font-style: italic;
+}
+.interactions {
+  color: #B01011;
+}
