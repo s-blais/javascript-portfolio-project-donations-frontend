@@ -1,3 +1,4 @@
+let newItemFlag = false
 
 document.addEventListener('DOMContentLoaded', function() {
   // fetch and render existing Transactions from db
@@ -17,7 +18,10 @@ function fetchTransactions() {
 }
 
 function renderTransactionCard(transaction) {
-  const details = document.createElement('details')
+  let details = document.createElement('details')
+  if (newItemFlag) {
+    details.classList.add('new')
+  }
   const detailsContent = `
     <summary><b>
       ${transaction.attributes.date} – ${transaction.attributes.recipient} – $${transaction.attributes.amount}
@@ -44,6 +48,8 @@ function createTransactionHandler(e) {
 }
 
 function createTransactionFetch(date, recipient, contact, amount, fund_id, notes) {
+
+  newItemFlag = true
   
   const bodyData = {date, recipient, contact, amount, fund_id, notes}
   
@@ -53,5 +59,5 @@ function createTransactionFetch(date, recipient, contact, amount, fund_id, notes
     body: JSON.stringify(bodyData)
   })
   .then(response => response.json())
-  .then(transactionData => renderTransactionCard(transactionData.data))
+  .then(transactionData => {renderTransactionCard(transactionData.data)})
 }
