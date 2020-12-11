@@ -26,9 +26,11 @@ function renderTransactionCard(transaction) {
     <summary><b>
       ${transaction.attributes.date} – ${transaction.attributes.recipient} – $${transaction.attributes.amount}
     </b></summary>
-    <strong>Fund:</strong> ${transaction.attributes.fund.name}<br>
-    <strong>Contact:</strong> ${transaction.attributes.contact}<br>
-    <strong>Notes:</strong> ${transaction.attributes.notes}
+    <p>
+      <strong>Fund:</strong> ${transaction.attributes.fund.name}<br>
+      <strong>Contact:</strong> ${transaction.attributes.contact}<br>
+      <strong>Notes:</strong> ${transaction.attributes.notes}
+    </p>
     `
   details.innerHTML = detailsContent
   document.getElementById('transaction-cards').prepend(details)
