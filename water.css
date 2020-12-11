@@ -223,7 +223,7 @@ input[type='radio'] {
 
 input:not([type='checkbox']):not([type='radio']),
 select {
-  display: block;
+  display: inline-block;
 }
 
 input {
