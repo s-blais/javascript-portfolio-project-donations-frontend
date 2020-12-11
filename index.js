@@ -16,19 +16,18 @@ function fetchTransactions() {
   )
 }
 
-// Want to refactor to be not so literal, replace innerHTML with prepend/append
 function renderTransactionCard(transaction) {
-  const card = `
-    <details>
-      <summary><b>
-        ${transaction.attributes.date} – ${transaction.attributes.recipient} – $${transaction.attributes.amount}
-      </b></summary>
-      <strong>Fund:</strong> ${transaction.attributes.fund.name}<br>
-      <strong>Contact:</strong> ${transaction.attributes.contact}<br>
-      <strong>Notes:</strong> ${transaction.attributes.notes}
-    </details>
-  `
-  document.getElementById('transaction-cards').innerHTML += card
+  const details = document.createElement('details')
+  const detailsContent = `
+    <summary><b>
+      ${transaction.attributes.date} – ${transaction.attributes.recipient} – $${transaction.attributes.amount}
+    </b></summary>
+    <strong>Fund:</strong> ${transaction.attributes.fund.name}<br>
+    <strong>Contact:</strong> ${transaction.attributes.contact}<br>
+    <strong>Notes:</strong> ${transaction.attributes.notes}
+    `
+  details.innerHTML = detailsContent
+  document.getElementById('transaction-cards').prepend(details)
 }
 
 function createTransactionHandler(e) {
