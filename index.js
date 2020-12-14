@@ -12,28 +12,10 @@ function fetchTransactions() {
   fetch('http://localhost:3000/api/v1/transactions')
   .then(response => response.json())
   .then(transactions => transactions.data.forEach(transaction => {
-    renderTransactionCard(transaction)
+    let newTransactionObject = new Transaction(transaction)
+    newTransactionObject.render()
     })
   )
-}
-
-function renderTransactionCard(transaction) {
-  let details = document.createElement('details')
-  if (newItemFlag) {
-    details.classList.add('new')
-  }
-  const detailsContent = `
-    <summary><b>
-      ${transaction.attributes.date} – ${transaction.attributes.recipient} – $${transaction.attributes.amount}
-    </b></summary>
-    <p>
-      <strong>Fund:</strong> ${transaction.attributes.fund.name}<br>
-      <strong>Contact:</strong> ${transaction.attributes.contact}<br>
-      <strong>Notes:</strong> ${transaction.attributes.notes}
-    </p>
-    `
-  details.innerHTML = detailsContent
-  document.getElementById('transaction-cards').prepend(details)
 }
 
 function createTransactionHandler(e) {
@@ -45,7 +27,6 @@ function createTransactionHandler(e) {
   const amount = parseInt(document.querySelector('#create-transaction-amount').value)
   const fund_id = parseInt(document.querySelector('#create-transaction-fund').value)
   const notes = document.querySelector('#create-transaction-notes').value
-  //debugger
   createTransactionFetch(date, recipient, contact, amount, fund_id, notes)
 }
 
@@ -61,5 +42,8 @@ function createTransactionFetch(date, recipient, contact, amount, fund_id, notes
     body: JSON.stringify(bodyData)
   })
   .then(response => response.json())
-  .then(transactionData => {renderTransactionCard(transactionData.data)})
+  .then(transaction => {
+    let newTransactionObject = new Transaction(transaction.data)
+    newTransactionObject.render()
+    })
 }
