@@ -31,8 +31,6 @@ function createTransactionHandler(e) {
 }
 
 function createTransactionFetch(date, recipient, contact, amount, fund_id, notes) {
-
-  newItemFlag = true
   
   const bodyData = {date, recipient, contact, amount, fund_id, notes}
   
@@ -43,6 +41,7 @@ function createTransactionFetch(date, recipient, contact, amount, fund_id, notes
   })
   .then(response => response.json())
   .then(transaction => {
+    newItemFlag = true
     let newTransactionObject = new Transaction(transaction.data)
     newTransactionObject.render()
     })
