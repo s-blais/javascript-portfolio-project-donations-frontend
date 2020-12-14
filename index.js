@@ -1,49 +1,48 @@
 let newItemFlag = false
-const createTransactionForm = document.getElementById('create-transaction-form')
+const createDonationForm = document.getElementById('create-donation-form')
 
 document.addEventListener('DOMContentLoaded', function() {
-  // fetch and render existing Transactions from db
-  fetchTransactions()
-  // set listener and handler onto createTransactionForm
-  // const createTransactionForm = document.getElementById('create-transaction-form')
-  createTransactionForm.addEventListener('submit', (e) => createTransactionHandler(e))
+  // fetch and render existing Donations from db
+  fetchDonations()
+  // set listener and handler onto createDonationForm
+  createDonationForm.addEventListener('submit', (e) => createDonationHandler(e))
 })
 
-function fetchTransactions() {
-  fetch('http://localhost:3000/api/v1/transactions')
+function fetchDonations() {
+  fetch('http://localhost:3000/api/v1/donations')
   .then(response => response.json())
-  .then(transactions => transactions.data.forEach(transaction => {
-    let newTransactionObject = new Transaction(transaction)
-    newTransactionObject.render()
+  .then(donations => donations.data.forEach(donation => {
+    let newDonationObject = new Donation(donation)
+    newDonationObject.render()
     })
   )
 }
 
-function createTransactionHandler(e) {
+function createDonationHandler(e) {
   e.preventDefault()
   // grab the values from the form
-  const date = createTransactionForm.date.value
-  const recipient = createTransactionForm.recipient.value
-  const contact = createTransactionForm.contact.value
-  const amount = createTransactionForm.amount.value
-  const fund_id = createTransactionForm.fund.value
-  const notes = createTransactionForm.notes.value
-  createTransactionFetch(date, recipient, contact, amount, fund_id, notes)
+  const date = createDonationForm.date.value
+  const recipient = createDonationForm.recipient.value
+  const contact = createDonationForm.contact.value
+  const amount = createDonationForm.amount.value
+  const fund_id = createDonationForm.fund.value
+  const notes = createDonationForm.notes.value
+  createDonationFetch(date, recipient, contact, amount, fund_id, notes)
 }
 
-function createTransactionFetch(date, recipient, contact, amount, fund_id, notes) {
+function createDonationFetch(date, recipient, contact, amount, fund_id, notes) {
   
   const bodyData = {date, recipient, contact, amount, fund_id, notes}
   
-  fetch("http://localhost:3000/api/v1/transactions", {
+  fetch("http://localhost:3000/api/v1/donations", {
     method: "POST",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify(bodyData)
   })
   .then(response => response.json())
-  .then(transaction => {
+  .then(donation => {
     newItemFlag = true
-    let newTransactionObject = new Transaction(transaction.data)
-    newTransactionObject.render()
+    let newDonationObject = new Donation(donation.data)
+    newDonationObject.render()
     })
 }
