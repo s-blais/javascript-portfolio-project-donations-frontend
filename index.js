@@ -1,10 +1,11 @@
 let newItemFlag = false
+const createTransactionForm = document.getElementById('create-transaction-form')
 
 document.addEventListener('DOMContentLoaded', function() {
   // fetch and render existing Transactions from db
   fetchTransactions()
-  // set create Transaction form variable and set listener and handler onto it
-  const createTransactionForm = document.getElementById('create-transaction-form')
+  // set listener and handler onto createTransactionForm
+  // const createTransactionForm = document.getElementById('create-transaction-form')
   createTransactionForm.addEventListener('submit', (e) => createTransactionHandler(e))
 })
 
@@ -21,18 +22,16 @@ function fetchTransactions() {
 function createTransactionHandler(e) {
   e.preventDefault()
   // grab the values from the form
-  const date = document.querySelector('#create-transaction-date').value
-  const recipient = document.querySelector('#create-transaction-recipient').value
-  const contact = document.querySelector('#create-transaction-contact').value
-  const amount = parseInt(document.querySelector('#create-transaction-amount').value)
-  const fund_id = parseInt(document.querySelector('#create-transaction-fund').value)
-  const notes = document.querySelector('#create-transaction-notes').value
+  const date = createTransactionForm.date.value
+  const recipient = createTransactionForm.recipient.value
+  const contact = createTransactionForm.contact.value
+  const amount = createTransactionForm.amount.value
+  const fund_id = createTransactionForm.fund.value
+  const notes = createTransactionForm.notes.value
   createTransactionFetch(date, recipient, contact, amount, fund_id, notes)
 }
 
 function createTransactionFetch(date, recipient, contact, amount, fund_id, notes) {
-
-  newItemFlag = true
   
   const bodyData = {date, recipient, contact, amount, fund_id, notes}
   
@@ -43,6 +42,7 @@ function createTransactionFetch(date, recipient, contact, amount, fund_id, notes
   })
   .then(response => response.json())
   .then(transaction => {
+    newItemFlag = true
     let newTransactionObject = new Transaction(transaction.data)
     newTransactionObject.render()
     })
