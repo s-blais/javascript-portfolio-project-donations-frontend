@@ -19,7 +19,7 @@ class Donation {
       <summary><b>
         ${this.date} – ${this.recipient} – $${this.amount}
       </b></summary>
-      <span class="edit-btn" id=${this.id} onclick="this.parentElement.style.display='none'; document.querySelector('#create-donation-form-container').scrollIntoView();">&#9998;</span>
+      <span class="edit-btn" id=${this.id} onclick="editButtonClick(this);">&#9998;</span>
       <p>
         <strong>Fund:</strong> ${this.fundName}<br>
         <strong>Contact:</strong> ${this.contact}<br>

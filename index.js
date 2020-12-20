@@ -1,5 +1,6 @@
 let newItemFlag = false
 const createDonationForm = document.getElementById('create-donation-form')
+const createDonationFormDetailsElement = document.getElementById('create-form-details-element')
 
 document.addEventListener('DOMContentLoaded', function() {
   // fetch and render existing Donations from db
@@ -45,4 +46,17 @@ function createDonationFetch(date, recipient, contact, amount, fund_id, notes) {
     let newDonationObject = new Donation(donation.data)
     newDonationObject.render()
     })
+}
+
+function editButtonClick(btn) {
+  // btn.parentElement.style.display='none' (save this for when the edit is complete)
+  // btn.id returns the id of the Donation that has been clicked to edit
+  // grab the Donation instance with that btn.id and store it in a variable
+  const thisDonation = Donation.all.find(d => d.id == btn.id)
+  // bring the form into view and open it if necessary
+  createDonationFormDetailsElement.scrollIntoView()
+  if (!createDonationFormDetailsElement.hasAttribute("open")) {
+    createDonationFormDetailsElement.setAttribute("open","")
+  }
+  // console.log(thisDonation)
 }
