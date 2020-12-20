@@ -19,3 +19,18 @@ details.new {
   100% {opacity: 1}
 }
 
+.edit-btn {
+  /* margin-left: 15px; */
+  color: #70777f;
+  font-weight: bold;
+  float: right;
+  font-size: 150%;
+  transform: scale(-1,1);
+  line-height: 80%;
+  /* line-height: 20px; */
+  cursor: pointer;
+  transition: 0.3s;
+}
+.edit-btn:hover {
+  color: #484848;
+}
