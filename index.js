@@ -59,4 +59,14 @@ function editButtonClick(btn) {
     createDonationFormDetailsElement.setAttribute("open","")
   }
   // console.log(thisDonation)
+  populateEditForm(thisDonation)
+}
+
+function populateEditForm(donation) {
+  createDonationForm.date.value = donation.date
+  createDonationForm.recipient.value = donation.recipient
+  createDonationForm.contact.value = donation.contact
+  createDonationForm.amount.value = donation.amount
+  createDonationForm.fund.value = donation.fundId
+  createDonationForm.notes.value = donation.notes
 }
