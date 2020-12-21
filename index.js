@@ -1,5 +1,6 @@
 let newItemFlag = false
 const createDonationForm = document.getElementById('create-donation-form')
+const createDonationFormDetailsElement = document.getElementById('create-form-details-element')
 
 document.addEventListener('DOMContentLoaded', function() {
   // fetch and render existing Donations from db
@@ -21,13 +22,19 @@ function fetchDonations() {
 function createDonationHandler(e) {
   e.preventDefault()
   // grab the values from the form
+  const id = createDonationForm.id.value
   const date = createDonationForm.date.value
   const recipient = createDonationForm.recipient.value
   const contact = createDonationForm.contact.value
   const amount = createDonationForm.amount.value
   const fund_id = createDonationForm.fund.value
   const notes = createDonationForm.notes.value
-  createDonationFetch(date, recipient, contact, amount, fund_id, notes)
+  // here, if hidden field is anything other than "", call updateDonationFetch
+  if (!!id) {
+    updateDonationFetch(id, date, recipient, contact, amount, fund_id, notes)
+  } else {
+    createDonationFetch(date, recipient, contact, amount, fund_id, notes)
+  }
 }
 
 function createDonationFetch(date, recipient, contact, amount, fund_id, notes) {
@@ -44,5 +51,53 @@ function createDonationFetch(date, recipient, contact, amount, fund_id, notes) {
     newItemFlag = true
     let newDonationObject = new Donation(donation.data)
     newDonationObject.render()
+    createDonationForm.reset()
+    })
+}
+
+function editButtonClick(btn) {
+  // btn.id returns the id of the Donation that has been clicked to edit
+  // grab the Donation instance with that btn.id and store it in a variable
+  const thisDonation = Donation.all.find(d => d.id == btn.id)
+  // bring the form into view and open it if necessary
+  createDonationFormDetailsElement.scrollIntoView()
+  if (!createDonationFormDetailsElement.hasAttribute("open")) {
+    createDonationFormDetailsElement.setAttribute("open","")
+  }
+  populateEditForm(thisDonation)
+}
+
+function populateEditForm(donation) {
+  createDonationForm.id.value = donation.id
+  createDonationForm.date.value = donation.date
+  createDonationForm.recipient.value = donation.recipient
+  createDonationForm.contact.value = donation.contact
+  createDonationForm.amount.value = donation.amount
+  createDonationForm.fund.value = donation.fundId
+  createDonationForm.notes.value = donation.notes
+}
+
+function updateDonationFetch(id, date, recipient, contact, amount, fund_id, notes) {
+  const bodyData = {date, recipient, contact, amount, fund_id, notes}
+  
+  fetch(`http://localhost:3000/api/v1/donations/${id}`, {
+    method: "PATCH",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(bodyData)
+  })
+  .then(response => response.json())
+  .then(donation => {
+    newItemFlag = true
+    // there's gotta be a better way to do these next two lines? This is removing the now-outdated Donation object from Donation.all
+    const oldDonationObjectIndex = Donation.all.findIndex(d => d.id == donation.data.id)
+    Donation.all.splice(oldDonationObjectIndex, 1)
+    // slide the updated Donation back into Donation.all so it can be rendered
+    let updatedDonationObject = new Donation(donation.data)
+    // before rendering the updated object, remove the original from the DOM..
+    // document.getElementById(`${donation.data.id}`).parentElement.remove()
+    document.querySelector(`[data-id="${donation.data.id}"]`).remove()
+    // now render the updated object at the top
+    updatedDonationObject.render()
+    createDonationForm.reset()
     })
 }

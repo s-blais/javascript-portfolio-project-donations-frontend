@@ -12,6 +12,7 @@ class Donation {
   }
   render() {
     let details = document.createElement('details')
+    details.setAttribute("data-id", this.id)
     if (newItemFlag) {
       details.classList.add('new')
     }
@@ -19,6 +20,7 @@ class Donation {
       <summary><b>
         ${this.date} – ${this.recipient} – $${this.amount}
       </b></summary>
+      <span class="edit-btn" id=${this.id} onclick="editButtonClick(this);">&#9998;</span>
       <p>
         <strong>Fund:</strong> ${this.fundName}<br>
         <strong>Contact:</strong> ${this.contact}<br>

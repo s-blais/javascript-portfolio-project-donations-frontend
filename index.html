@@ -15,9 +15,10 @@
   <body>
     <h2>MFT Trust Donation Tracker</h2>
     <div id="create-donation-form-container">
-      <details>
-      <summary><h3>Create New Donation</h3></summary>
+      <details id="create-form-details-element">
+      <summary><h3>Donation Form</h3></summary>
       <form id="create-donation-form">
+        <input type="hidden" name="id" value="">
         <input type="text" name="date" placeholder="YYYY-MM-DD"/>
         <input type="text" name="recipient" placeholder="Recipient"/>
         <input type="text" name="contact" placeholder="Contact"/>
@@ -30,7 +31,7 @@
       </select>
       <br />
         <textarea name="notes" rows="3" cols="20" placeholder="Notes"></textarea>
-        <input type="submit" name="submit" value="Create New Donation"/>
+        <input type="submit" name="submit" value="Save Donation"/>
       </form>
       </details>
     </div>
