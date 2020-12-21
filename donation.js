@@ -12,6 +12,7 @@ class Donation {
   }
   render() {
     let details = document.createElement('details')
+    details.setAttribute("data-id", this.id)
     if (newItemFlag) {
       details.classList.add('new')
     }
