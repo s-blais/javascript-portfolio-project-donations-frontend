@@ -64,6 +64,7 @@ function editButtonClick(btn) {
 }
 
 function populateEditForm(donation) {
+  createDonationForm.id.value = donation.id
   createDonationForm.date.value = donation.date
   createDonationForm.recipient.value = donation.recipient
   createDonationForm.contact.value = donation.contact
