@@ -45,6 +45,7 @@ function createDonationFetch(date, recipient, contact, amount, fund_id, notes) {
     newItemFlag = true
     let newDonationObject = new Donation(donation.data)
     newDonationObject.render()
+    createDonationForm.reset()
     })
 }
 
