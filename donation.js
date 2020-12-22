@@ -20,7 +20,7 @@ class Donation {
       <summary><b>
         ${this.date} – ${this.recipient} – $${this.amount}
       </b></summary>
-      <span class="delete-btn" id=${this.id} onclick="editButtonClick(this);">&#128465;&#65039;</span>
+      <span class="delete-btn" id=${this.id} onclick="deleteButtonClick(this);">&#128465;&#65039;</span>
       <span class="edit-btn" id=${this.id} title="delete" onclick="editButtonClick(this);">&#9999;&#65039;</span>
       <p>
         <strong>Fund:</strong> ${this.fundName}<br>

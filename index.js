@@ -101,3 +101,26 @@ function updateDonationFetch(id, date, recipient, contact, amount, fund_id, note
     createDonationForm.reset()
     })
 }
+
+function deleteButtonClick(btn) {
+  if (window.confirm("Delete this donation record? This cannot be undone")) {
+    deleteDonationFetch(btn.id)
+  }
+}
+
+function deleteDonationFetch(id) {
+  fetch(`http://localhost:3000/api/v1/donations/${id}`, {
+    method: "DELETE",
+    headers: {"Content-Type": "application/json"},
+  })
+  // remove the deleted donation from the JS object array
+  // there's gotta be a better way to do these next two lines? This is removing the now-deleted Donation object from Donation.all
+  const oldDonationObjectIndex = Donation.all.findIndex(d => d.id == id)
+  Donation.all.splice(oldDonationObjectIndex, 1)
+  deletingDetailsElement = document.querySelector(`[data-id="${id}"]`);
+  deletingDetailsElement.classList.add("delete-details-fade");
+  setTimeout(() => {deletingDetailsElement.remove()}, 1000)
+  // newItemFlag = true
+  // remove the donation from the DOM..
+  // deletingDetailsElement.remove()
+}
