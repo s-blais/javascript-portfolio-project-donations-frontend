@@ -42,3 +42,11 @@ details.new {
   padding-left: 10px;
   cursor: pointer;
 }
+.delete-details-fade {
+  opacity: 0;
+  transition: 0.75s;
+}
+.delete-details-fade summary {
+  opacity: 0;
+  transition: 0.75s;
+}
