@@ -21,16 +21,32 @@ details.new {
 
 .edit-btn {
   /* margin-left: 15px; */
-  color: #70777f;
+  /* color: #70777f; */
   font-weight: bold;
   float: right;
-  font-size: 150%;
+  font-size: 125%;
   transform: scale(-1,1);
-  line-height: 80%;
+  /* padding-left: 10px; */
+  padding-right: 10px;
+  /* line-height: 80%; */
   /* line-height: 20px; */
   cursor: pointer;
   transition: 0.3s;
 }
 .edit-btn:hover {
   color: #484848;
+}
+.delete-btn {
+  float: right;
+  font-size: 125%;
+  padding-left: 10px;
+  cursor: pointer;
+}
+.delete-details-fade {
+  opacity: 0;
+  transition: 0.75s;
+}
+.delete-details-fade summary {
+  opacity: 0;
+  transition: 0.75s;
 }
