@@ -1,12 +1,12 @@
 let newItemFlag = false
-const createDonationForm = document.getElementById('create-donation-form')
-const createDonationFormDetailsElement = document.getElementById('create-form-details-element')
+const donationForm = document.getElementById('donation-form')
+const donationFormDetailsElement = document.getElementById('donation-form-details-element')
 
 document.addEventListener('DOMContentLoaded', function() {
   // fetch and render existing Donations from db
   fetchDonations()
-  // set listener and handler onto createDonationForm
-  createDonationForm.addEventListener('submit', (e) => createDonationHandler(e))
+  // set listener and handler onto donationForm
+  donationForm.addEventListener('submit', (e) => donationFormSubmitHandler(e))
 })
 
 function fetchDonations() {
@@ -19,16 +19,16 @@ function fetchDonations() {
   )
 }
 
-function createDonationHandler(e) {
+function donationFormSubmitHandler(e) {
   e.preventDefault()
   // grab the values from the form
-  const id = createDonationForm.id.value
-  const date = createDonationForm.date.value
-  const recipient = createDonationForm.recipient.value
-  const contact = createDonationForm.contact.value
-  const amount = createDonationForm.amount.value
-  const fund_id = createDonationForm.fund.value
-  const notes = createDonationForm.notes.value
+  const id = donationForm.id.value
+  const date = donationForm.date.value
+  const recipient = donationForm.recipient.value
+  const contact = donationForm.contact.value
+  const amount = donationForm.amount.value
+  const fund_id = donationForm.fund.value
+  const notes = donationForm.notes.value
   // now, if hidden field is anything other than "", call updateDonationFetch
   if (!!id) {
     updateDonationFetch(id, date, recipient, contact, amount, fund_id, notes)
@@ -51,27 +51,27 @@ function createDonationFetch(date, recipient, contact, amount, fund_id, notes) {
     newItemFlag = true
     let newDonationObject = new Donation(donation.data)
     newDonationObject.render()
-    createDonationForm.reset()
+    donationForm.reset()
     })
 }
 
 function editButtonClick(btn) {
   const thisDonation = Donation.all.find(d => d.id == btn.parentElement.dataset.id)
-  createDonationFormDetailsElement.scrollIntoView()
-  if (!createDonationFormDetailsElement.hasAttribute("open")) {
-    createDonationFormDetailsElement.setAttribute("open","")
+  donationFormDetailsElement.scrollIntoView()
+  if (!donationFormDetailsElement.hasAttribute("open")) {
+    donationFormDetailsElement.setAttribute("open","")
   }
   populateEditForm(thisDonation)
 }
 
 function populateEditForm(donation) {
-  createDonationForm.id.value = donation.id
-  createDonationForm.date.value = donation.date
-  createDonationForm.recipient.value = donation.recipient
-  createDonationForm.contact.value = donation.contact
-  createDonationForm.amount.value = donation.amount
-  createDonationForm.fund.value = donation.fundId
-  createDonationForm.notes.value = donation.notes
+  donationForm.id.value = donation.id
+  donationForm.date.value = donation.date
+  donationForm.recipient.value = donation.recipient
+  donationForm.contact.value = donation.contact
+  donationForm.amount.value = donation.amount
+  donationForm.fund.value = donation.fundId
+  donationForm.notes.value = donation.notes
 }
 
 function updateDonationFetch(id, date, recipient, contact, amount, fund_id, notes) {
@@ -94,7 +94,7 @@ function updateDonationFetch(id, date, recipient, contact, amount, fund_id, note
     document.querySelector(`[data-id="${donation.data.id}"]`).remove()
     // now render the updated object at the top
     updatedDonationObject.render()
-    createDonationForm.reset()
+    donationForm.reset()
     })
 }
 
