@@ -29,7 +29,7 @@ function createDonationHandler(e) {
   const amount = createDonationForm.amount.value
   const fund_id = createDonationForm.fund.value
   const notes = createDonationForm.notes.value
-  // here, if hidden field is anything other than "", call updateDonationFetch
+  // now, if hidden field is anything other than "", call updateDonationFetch
   if (!!id) {
     updateDonationFetch(id, date, recipient, contact, amount, fund_id, notes)
   } else {
@@ -56,10 +56,7 @@ function createDonationFetch(date, recipient, contact, amount, fund_id, notes) {
 }
 
 function editButtonClick(btn) {
-  // btn.id returns the id of the Donation that has been clicked to edit
-  // grab the Donation instance with that btn.id and store it in a variable
-  const thisDonation = Donation.all.find(d => d.id == btn.id)
-  // bring the form into view and open it if necessary
+  const thisDonation = Donation.all.find(d => d.id == btn.parentElement.dataset.id)
   createDonationFormDetailsElement.scrollIntoView()
   if (!createDonationFormDetailsElement.hasAttribute("open")) {
     createDonationFormDetailsElement.setAttribute("open","")
@@ -94,7 +91,6 @@ function updateDonationFetch(id, date, recipient, contact, amount, fund_id, note
     // slide the updated Donation back into Donation.all so it can be rendered
     let updatedDonationObject = new Donation(donation.data)
     // before rendering the updated object, remove the original from the DOM..
-    // document.getElementById(`${donation.data.id}`).parentElement.remove()
     document.querySelector(`[data-id="${donation.data.id}"]`).remove()
     // now render the updated object at the top
     updatedDonationObject.render()
@@ -104,7 +100,7 @@ function updateDonationFetch(id, date, recipient, contact, amount, fund_id, note
 
 function deleteButtonClick(btn) {
   if (window.confirm("Delete this donation record? This cannot be undone")) {
-    deleteDonationFetch(btn.id)
+    deleteDonationFetch(btn.parentElement.dataset.id)
   }
 }
 
@@ -120,7 +116,4 @@ function deleteDonationFetch(id) {
   deletingDetailsElement = document.querySelector(`[data-id="${id}"]`);
   deletingDetailsElement.classList.add("delete-details-fade");
   setTimeout(() => {deletingDetailsElement.remove()}, 1000)
-  // newItemFlag = true
-  // remove the donation from the DOM..
-  // deletingDetailsElement.remove()
 }
