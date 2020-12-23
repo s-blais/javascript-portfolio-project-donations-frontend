@@ -1,12 +1,16 @@
 let newItemFlag = false
 const donationForm = document.getElementById('donation-form')
 const donationFormDetailsElement = document.getElementById('donation-form-details-element')
+const donationFormClearButton = document.getElementById('donation-form-clear')
+const donationFormClearCloseButton = document.getElementById('donation-form-clear-close')
 
 document.addEventListener('DOMContentLoaded', function() {
   // fetch and render existing Donations from db
   fetchDonations()
   // set listener and handler onto donationForm
   donationForm.addEventListener('submit', (e) => donationFormSubmitHandler(e))
+  donationFormClearButton.addEventListener('click', (e) => donationFormClear(e))
+  donationFormClearCloseButton.addEventListener('click', (e) => donationFormClearClose(e))
 })
 
 function fetchDonations() {
@@ -37,6 +41,17 @@ function donationFormSubmitHandler(e) {
   }
 }
 
+function donationFormClear(e) {
+  e.preventDefault()
+  donationForm.reset()
+  donationForm.submit.value = "Save Donation"
+}
+
+function donationFormClearClose(e) {
+  donationFormClear(e)
+  donationFormDetailsElement.removeAttribute("open")
+}
+
 function createDonationFetch(date, recipient, contact, amount, fund_id, notes) {
   
   const bodyData = {date, recipient, contact, amount, fund_id, notes}
@@ -62,6 +77,7 @@ function editButtonClick(btn) {
     donationFormDetailsElement.setAttribute("open","")
   }
   populateEditForm(thisDonation)
+  donationForm.submit.value = "Update Donation"
 }
 
 function populateEditForm(donation) {
@@ -94,6 +110,7 @@ function updateDonationFetch(id, date, recipient, contact, amount, fund_id, note
     document.querySelector(`[data-id="${donation.data.id}"]`).remove()
     // now render the updated object at the top
     updatedDonationObject.render()
+    donationForm.submit.value = "Save Donation"
     donationForm.reset()
     })
 }
