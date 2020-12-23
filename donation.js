@@ -28,7 +28,7 @@ class Donation {
         <strong>Notes:</strong> ${this.notes}
       </p>
       `
-    document.getElementById('donation-cards').prepend(details)
+    document.getElementById('donation-rows').prepend(details)
   }
 }
 Donation.all = []
