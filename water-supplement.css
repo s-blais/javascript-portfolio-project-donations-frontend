@@ -18,28 +18,17 @@ details.new {
   0% {opacity: 0}
   100% {opacity: 1}
 }
-
-.edit-btn {
-  /* margin-left: 15px; */
-  /* color: #70777f; */
-  font-weight: bold;
+.edit-delete-buttons {
   float: right;
+}
+.edit-btn {
   font-size: 125%;
   transform: scale(-1,1);
-  /* padding-left: 10px; */
-  padding-right: 10px;
-  /* line-height: 80%; */
-  /* line-height: 20px; */
+  display: inline-block;
   cursor: pointer;
-  transition: 0.3s;
-}
-.edit-btn:hover {
-  color: #484848;
 }
 .delete-btn {
-  float: right;
   font-size: 125%;
-  padding-left: 10px;
   cursor: pointer;
 }
 .delete-details-fade {

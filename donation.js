@@ -17,11 +17,17 @@ class Donation {
       details.classList.add('new')
     }
     details.innerHTML = `
-      <summary><b>
-        ${this.date} – ${this.recipient} – $${this.amount}
-      </b></summary>
-      <span class="delete-btn" onclick="deleteButtonClick(this);">&#128465;&#65039;</span>
-      <span class="edit-btn" title="delete" onclick="editButtonClick(this);">&#9999;&#65039;</span>
+      <summary>
+        <b>
+          ${this.date} – ${this.recipient} – $${this.amount}
+        </b>
+      </summary>
+      <div>
+        <div class="edit-delete-buttons">
+          <span class="edit-btn" title="edit" onclick="editButtonClick(this);">&#9999;&#65039;</span>
+          <span class="delete-btn" title="delete" onclick="deleteButtonClick(this);">&#128465;&#65039;</span>
+        </div>
+      </div>
       <p>
         <strong>Fund:</strong> ${this.fundName}<br>
         <strong>Contact:</strong> ${this.contact}<br>
