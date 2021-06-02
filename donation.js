@@ -24,8 +24,8 @@ class Donation {
       </summary>
       <div>
         <div class="edit-delete-buttons">
-          <span class="edit-btn" title="edit" onclick="editButtonClick(this);">&#9999;&#65039;</span>
-          <span class="delete-btn" title="delete" onclick="deleteButtonClick(this);">&#128465;&#65039;</span>
+          <span class="edit-btn" title="edit" onclick="editButtonClick(this);" data-id=${this.id}>&#9999;&#65039;</span>
+          <span class="delete-btn" title="delete" onclick="deleteButtonClick(this);" data-id=${this.id}>&#128465;&#65039;</span>
         </div>
       </div>
       <p>

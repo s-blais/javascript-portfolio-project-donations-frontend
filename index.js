@@ -71,7 +71,7 @@ function createDonationFetch(date, recipient, contact, amount, fund_id, notes) {
 }
 
 function editButtonClick(btn) {
-  const thisDonation = Donation.all.find(d => d.id == btn.parentElement.dataset.id)
+  const thisDonation = Donation.all.find(d => d.id == btn.dataset.id)
   donationFormDetailsElement.scrollIntoView()
   if (!donationFormDetailsElement.hasAttribute("open")) {
     donationFormDetailsElement.setAttribute("open","")
@@ -117,7 +117,7 @@ function updateDonationFetch(id, date, recipient, contact, amount, fund_id, note
 
 function deleteButtonClick(btn) {
   if (window.confirm("Delete this donation record? This cannot be undone")) {
-    deleteDonationFetch(btn.parentElement.dataset.id)
+    deleteDonationFetch(btn.dataset.id)
   }
 }
 
@@ -130,7 +130,7 @@ function deleteDonationFetch(id) {
   // there's gotta be a better way to do these next two lines? This is removing the now-deleted Donation object from Donation.all
   const oldDonationObjectIndex = Donation.all.findIndex(d => d.id == id)
   Donation.all.splice(oldDonationObjectIndex, 1)
-  deletingDetailsElement = document.querySelector(`[data-id="${id}"]`);
+  deletingDetailsElement = document.querySelector(`details[data-id="${id}"]`);
   deletingDetailsElement.classList.add("delete-details-fade");
   setTimeout(() => {deletingDetailsElement.remove()}, 1000)
 }
